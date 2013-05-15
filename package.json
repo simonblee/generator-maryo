@@ -1,12 +1,12 @@
 {
-  "name": "generator-bm",
+  "name": "generator-marionette",
   "version": "0.0.0",
-  "description": "A generator for Yeoman",
+  "description": "A marionette generator for Yeoman",
   "keywords": [
     "yeoman-generator"
   ],
-  "homepage": "https://github.com/simonblee/generator-bm",
-  "bugs": "https://github.com/simonblee/generator-bm/issues",
+  "homepage": "https://github.com/simonblee/generator-marionette",
+  "bugs": "https://github.com/simonblee/generator-marionette/issues",
   "author": {
     "name": "simonblee",
     "email": "user@example.net",
@@ -15,7 +15,7 @@
   "main": "app/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/simonblee/generator-bm.git"
+    "url": "https://github.com/simonblee/generator-marionette.git"
   },
   "scripts": {
     "test": "mocha"
