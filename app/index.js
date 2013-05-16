@@ -20,7 +20,7 @@ util.inherits(MarionetteGenerator, yeoman.generators.NamedBase);
 MarionetteGenerator.prototype.askFor = function askFor() {
     var cb = this.async(),
         styleFormat = ['css', 'sass', 'less'],
-        templateFormat = ['none', 'dust', 'handlebars', 'swig', '_'],
+        templateFormat = ['none', 'dust', 'handlebars', '_'],
         testFramework = ['none', 'jasmine', 'mocha'],
         prompts = [{
             name: 'styleFormat',
@@ -94,24 +94,20 @@ MarionetteGenerator.prototype.app = function app() {
 
     // Create the application directory structure
     this.mkdir('app');
-    this.mkdir('app/collections');
-    this.mkdir('app/models');
-    this.mkdir('app/views');
-    this.mkdir('app/templates');
+    this.mkdir('app/scripts/templates');
     this.mkdir('app/styles');
+    this.mkdir('app/images');
 
-    // Template all files with a leading '_', copy the rest
-    // fs.readdir('./templates', function (files) {
-    //     files.forEach(function (file) {
-    //         fs.stat(
-    //     });
-    // });
-
+    // Copy standard files
     this.copy('config.js', 'app/config.js');
     this.copy('editorconfig', '.editorconfig');
     this.copy('jshintrc', '.jshintrc');
+    this.copy('gitattributes', '.gitattributes');
+    this.copy('gitignore', '.gitignore');
+    this.copy('bowerrc', '.bowerrc');
 
-    this.template('_index.html', 'index.html');
+    // Template files dependent on options
+    this.template('_index.html', 'app/index.html');
     this.template('_package.json', 'package.json');
     this.template('_bower.json', 'bower.json');
     this.template('_Gruntfile.js', 'Gruntfile.js');
