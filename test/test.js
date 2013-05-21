@@ -4,7 +4,6 @@ var path    = require('path');
 var helpers = require('yeoman-generator').test;
 var assert  = require('assert');
 
-
 // XXX With current API, (prior v2), that's a complete mess to setup generators
 // if they differ from the standard lib/generators layout.
 //
@@ -29,7 +28,7 @@ var assert  = require('assert');
 //      .lookup('*:*', path.join(__dirname, '..'))
 //
 
-describe('Backbone generator test', function () {
+describe('Marionette generator test', function () {
 
     beforeEach(function (done) {
         // Clean and create temp test directory for the app
@@ -56,15 +55,9 @@ describe('Backbone generator test', function () {
         }.bind(this));
     });
 
-    // it('every generator can be required without throwing', function () {
-    //     // not testing the actual run of generators yet
-    //     this.all = require('../all');
-    //     this.app = require('../app');
-    //     this.collection = require('../collection');
-    //     this.model = require('../model');
-    //     this.router = require('../router');
-    //     this.view = require('../view');
-    // });
+    it('every generator can be required without throwing', function () {
+        this.app = require('../app');
+    });
 
     it('creates expected files', function (done) {
         var expected = [
@@ -78,6 +71,9 @@ describe('Backbone generator test', function () {
             '.editorconfig',
             'app/index.html',
             'app/scripts/config.js',
+            'app/scripts/templates',
+            'app/styles',
+            'app/images'
         ];
 
         this.marionette.app.run({}, function () {

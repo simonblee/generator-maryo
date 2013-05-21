@@ -64,7 +64,6 @@ MarionetteGenerator.prototype.askFor = function askFor() {
 
     // Prompt the user and handle the user responses
     this.prompt(prompts, function (err, props) {
-        console.log(props);
         if (err) return this.emit('error', err);
 
         // Set defaults incase of invalid entry
@@ -94,12 +93,13 @@ MarionetteGenerator.prototype.app = function app() {
 
     // Create the application directory structure
     this.mkdir('app');
+    this.mkdir('app/scripts');
     this.mkdir('app/scripts/templates');
     this.mkdir('app/styles');
     this.mkdir('app/images');
 
     // Copy standard files
-    this.copy('config.js', 'app/config.js');
+    this.copy('config.js', 'app/scripts/config.js');
     this.copy('editorconfig', '.editorconfig');
     this.copy('jshintrc', '.jshintrc');
     this.copy('gitattributes', '.gitattributes');
