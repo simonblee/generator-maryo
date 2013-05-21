@@ -57,6 +57,14 @@ describe('Marionette generator test', function () {
 
     it('every generator can be required without throwing', function () {
         this.app = require('../app');
+        this.application = require('../application');
+        this.compositeView = require('../composite-view');
+        this.collectionView = require('../collection-view');
+        this.itemView = require('../item-view');
+        this.view = require('../view');
+        this.layout = require('../layout');
+        this.region = require('../region');
+        this.regionManager = require('../region-manager');
     });
 
     it('creates expected files', function (done) {
@@ -80,5 +88,13 @@ describe('Marionette generator test', function () {
             helpers.assertFiles(expected);
             done();
         });
+    });
+
+    it.skip('has dust renderer when app uses dust templates', function(){
+
+    });
+
+    it.skip('has handlebars renderer when app uses handlebars templates', function(){
+
     });
 });
