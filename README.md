@@ -1,6 +1,8 @@
 # Generator Maryo
 [![Build Status](https://secure.travis-ci.org/simonblee/generator-marionette.png?branch=master)](https://travis-ci.org/simonblee/generator-marionette)
 
+## In dev, almost ready for use.
+
 A Marionette and Backbone generator for Yeoman. Comes with RequireJS and DustJS templates.
 
 ## The Name
