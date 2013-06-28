@@ -1,27 +1,21 @@
 {
-  "name": "generator-marionette",
-  "version": "0.0.0",
-  "description": "A marionette generator for Yeoman",
-  "keywords": [
-    "yeoman-generator"
-  ],
-  "homepage": "https://github.com/simonblee/generator-marionette",
-  "bugs": "https://github.com/simonblee/generator-marionette/issues",
-  "author": {
-    "name": "simonblee",
-    "email": "user@example.net",
-    "url": "https://github.com/simonblee"
-  },
-  "main": "app/index.js",
+  "name": "generator-maryo",
+  "version": "0.0.1",
+  "description": "A Marionette and backbone generator for Yeoman with Require and Dust templates.",
+  "keywords": [],
+  "homepage": "https://github.com/simonblee/generator-maryo",
+  "bugs": "https://github.com/simonblee/generator-maryo/issues",
+  "author": "Simon Blee",
   "repository": {
     "type": "git",
-    "url": "https://github.com/simonblee/generator-marionette.git"
+    "url": "https://github.com/simonblee/generator-maryo.git"
   },
   "scripts": {
     "test": "mocha"
   },
   "dependencies": {
-    "yeoman-generator": "~0.10.2"
+    "yeoman-generator": "~0.10.2",
+    "generator-backbone": "0.1.2"
   },
   "devDependencies": {
     "mocha": "~1.9.0"

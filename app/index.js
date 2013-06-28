@@ -2,104 +2,123 @@
 var fs = require('fs');
 var util = require('util');
 var path = require('path');
+var fs = require('fs');
 var yeoman = require('yeoman-generator');
+var exec = require('child_process').exec;
 
-
-var MarionetteGenerator = module.exports = function MarionetteGenerator(args, options, config) {
+var MaryoGenerator = module.exports = function MaryoGenerator (args, options, config) {
     yeoman.generators.Base.apply(this, arguments);
 
     this.on('end', function () {
         this.installDependencies({ skipInstall: options['skip-install'] });
+        exec('bower ls --path', function (error, stdout, stderr) {
+            fs.readFile(path, function (err, data) {
+        });
     });
 
     this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
-};
+}
 
-util.inherits(MarionetteGenerator, yeoman.generators.NamedBase);
+util.inherits(MaryoGenerator, yeoman.generators.NamedBase);
 
-MarionetteGenerator.prototype.askFor = function askFor() {
-    var cb = this.async(),
-        styleFormat = ['css', 'sass', 'less'],
-        templateFormat = ['none', 'dust', 'handlebars', '_'],
-        testFramework = ['none', 'jasmine', 'mocha'],
-        prompts = [{
-            name: 'styleFormat',
-            message: 'Which style format would you like to use?',
-            default: styleFormat.join('/')
-        },
-        {
-            name: 'templateFormat',
-            message: 'Which template library would you like to use?',
-            default: templateFormat.join('/')
-        },
-        {
-            name: 'testFramework',
-            message: 'Which test framework would you like to use?',
-            default: testFramework.join('/')
-        },
-        {
-            name: 'includeRequireJS',
-            message: 'Would you like to include RequireJS (for AMD support)?',
-            default: 'Y/n'
-        },
-        {
-            name: 'includeBootstrap',
-            message: 'Would you like to include Twitter Bootstrap?',
-            default: 'Y/n'
-        }];
+MaryoGenerator.prototype.askFor = function askFor() {
+    var cb = this.async();
 
-    // Be polite
-    console.log(
-        '\n     _-----_' +
-        '\n    |       |' +
-        '\n    |' + '--(o)--'.red + '|   .--------------------------.' +
-        '\n   `---------´  |    ' + 'Welcome to Yeoman,'.yellow.bold + '    |' +
-        '\n    ' + '( '.yellow + '_' + '´U`'.yellow + '_' + ' )'.yellow + '   |   ' + 'ladies and gentlemen!'.yellow.bold + '  |' +
-        '\n    /___A___\\   \'__________________________\'' +
-        '\n     |  ~  |'.yellow +
-        '\n   __' + '\'.___.\''.yellow + '__' +
-        '\n ´   ' + '`  |'.red + '° ' + '´ Y'.red + ' `\n\n' +
-        'Let\'s dance with Marionette.\n\n'
-    );
-
-    // Prompt the user and handle the user responses
-    this.prompt(prompts, function (err, props) {
-        if (err) return this.emit('error', err);
-
-        // Set defaults incase of invalid entry
-        this.styleFormat = styleFormat[0]; //css
-        this.templateFormat = templateFormat[0]; //none
-        this.testFramework = testFramework[0]; //none
-
-        // Grab the user's selections
-        if (styleFormat.indexOf(props.styleFormat) !== -1) {
-            this.styleFormat = props.styleFormat;
+    // Generate from a config file or prompt the user.
+    if (this.options['config']) {
+        var path = this.options['config'];
+        if (path.substr(0,1) === '~') {
+            path = process.env.HOME + path.substr(1);
         }
-        if (templateFormat.indexOf(props.templateFormat) !== -1) {
-            this.templateFormat = props.templateFormat;
-        }
-        if (testFramework.indexOf(props.testFramework) !== -1) {
-            this.testFramework = props.testFramework;
-        }
-        this.includeRequireJS = (/y/i).test(props.includeRequireJS);
-        this.includeBootstrap = (/y/i).test(props.includeBootstrap);
 
-        cb();
-    }.bind(this));
-};
+        fs.readFile(path, function (err, data) {
+            var config = JSON.parse(data);
 
-MarionetteGenerator.prototype.app = function app() {
+            this.styleFormat = config.styleFormat;
+            this.templateFormat = config.templateFormat;
+            this.testFramework = config.testFramework;
+            this.includeBootstrap = config.includeBootstrap;
+
+            cb();
+        }.bind(this));
+    } else {
+        var styleFormat = ['css', 'sass', 'less'],
+            templateFormat = ['_', 'dust', 'handlebars'],
+            testFramework = ['none', 'jasmine', 'mocha'],
+            prompts = [{
+                name: 'styleFormat',
+                message: 'Which style format would you like to use ('+styleFormat.join("/")+')?',
+                choices: styleFormat
+            },
+            {
+                name: 'templateFormat',
+                message: 'Which template library would you like to use ('+templateFormat.join("/")+')?',
+                choices: templateFormat
+            },
+            {
+                name: 'testFramework',
+                message: 'Which test framework would you like to use ('+testFramework.join("/")+')?',
+                choices: testFramework
+            },
+            {
+                name: 'includeBootstrap',
+                message: 'Would you like to include Twitter Bootstrap (y)?',
+                type: 'confirm'
+            }];
+
+        // Be polite
+        console.log(
+            '\n     _-----_' +
+            '\n    |       |' +
+            '\n    |' + '--(o)--'.red + '|   .--------------------------.' +
+            '\n   `---------´  |    ' + 'Welcome to Yeoman,'.yellow.bold + '    |' +
+            '\n    ' + '( '.yellow + '_' + '´U`'.yellow + '_' + ' )'.yellow + '   |   ' + 'ladies and gentlemen!'.yellow.bold + '  |' +
+            '\n    /___A___\\   \'__________________________\'' +
+            '\n     |  ~  |'.yellow +
+            '\n   __' + '\'.___.\''.yellow + '__' +
+            '\n ´   ' + '`  |'.red + '° ' + '´ Y'.red + ' `\n\n' +
+            'Let\'s dance with Marionette.\n\n'
+        );
+
+        // Prompt the user and handle the user responses
+        this.prompt(prompts, function (err, props) {
+            this.styleFormat = props.styleFormat || styleFormat[0];
+            this.templateFormat = props.templateFormat || templateFormat[0];
+            this.testFramework = props.testFramework || testFramework[0];
+            this.includeBootstrap = props.includeBootstrap;
+
+            cb();
+        }.bind(this));
+    }
+}
+
+MaryoGenerator.prototype.app = function app () {
     var self = this;
+
+    // TODO: Set up user input to configure server. Template
+    // has access to this object.
+    this.connect = {
+        options: {
+            port: 8888
+        }
+    };
 
     // Create the application directory structure
     this.mkdir('app');
     this.mkdir('app/scripts');
+    this.mkdir('app/scripts/collections');
+    this.mkdir('app/scripts/models');
+    this.mkdir('app/scripts/views');
+    this.mkdir('app/scripts/routers');
     this.mkdir('app/scripts/templates');
+    this.mkdir('app/scripts/layouts');
+    this.mkdir('app/scripts/regions');
     this.mkdir('app/styles');
     this.mkdir('app/images');
 
-    // Copy standard files
-    this.copy('config.js', 'app/scripts/config.js');
+    // Copy files
+    this.copy('main.js', 'app/scripts/main.js');
+    this.copy('index.html', 'app/index.html');
     this.copy('editorconfig', '.editorconfig');
     this.copy('jshintrc', '.jshintrc');
     this.copy('gitattributes', '.gitattributes');
@@ -107,8 +126,23 @@ MarionetteGenerator.prototype.app = function app() {
     this.copy('bowerrc', '.bowerrc');
 
     // Template files dependent on options
-    this.template('_index.html', 'app/index.html');
+    this.template('_config.js', 'app/scripts/config.js');
     this.template('_package.json', 'package.json');
     this.template('_bower.json', 'bower.json');
     this.template('_Gruntfile.js', 'Gruntfile.js');
-};
+}
+
+MaryoGenerator.prototype.require = function require () {
+
+}
+
+MaryoGenerator.prototype.h5bp = function h5bp () {
+    var ext = this.styleFormat,
+        cb = this.async();
+
+    this.remote('h5bp', 'html5-boilerplate', function (err, remote) {
+        remote.copy('./css/normalize.css', 'app/styles/normalize.'+ext);
+        remote.copy('./css/main.css', 'app/styles/main.'+ext);
+        cb();
+    }.bind(this));
+}
