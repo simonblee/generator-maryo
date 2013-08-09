@@ -6,14 +6,14 @@ var fs = require('fs');
 var yeoman = require('yeoman-generator');
 var exec = require('child_process').exec;
 
-var MaryoGenerator = module.exports = function MaryoGenerator (args, options, config) {
+var MaryoGenerator = module.exports = function MaryoGenerator(args, options, config) {
     yeoman.generators.Base.apply(this, arguments);
 
     this.on('end', function () {
         this.installDependencies({ skipInstall: options['skip-install'] });
-        exec('bower ls --path', function (error, stdout, stderr) {
-            fs.readFile(path, function (err, data) {
-        });
+        // exec('bower ls --path', function (error, stdout, stderr) {
+        //     fs.readFile(path, function (err, data) {});
+        // });
     });
 
     this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));

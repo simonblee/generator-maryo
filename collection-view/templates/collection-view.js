@@ -5,9 +5,12 @@ define([
 
 function (Backbone, Marionette) {
 
-    return Backbone.Marionette.CompositeView.extend({
+    return Backbone.Marionette.CollectionView.extend({
 
-        itemViewContainer: "tbody",
+        // MARYO GENERATED: Override if necessary
+        itemView: Backbone.Marionette.ItemView.extend({
+            template: '<%= itemTemplateName %>',
+        }),
 
         events: {},
 

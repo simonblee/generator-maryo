@@ -23,18 +23,18 @@ module.exports = function (grunt) {
 
     grunt.initConfig({
         yeoman: yeomanConfig,
-        watch: {
+        watch: {<% if (styleFormat === 'sass') { %>
             compass: {
                 files: ['<%= _.slugify(appname) %>/styles/{,*/}*.{scss,sass}'],
                 tasks: ['compass:server']
-            },
+            },<% } if (styleFormat === 'less') { %>
             less: {
                 files: 'app/styles',
                 tasks: "less:dev"
-            },<% if (templateFormat === 'dust') { %>
+            },<% } if (templateFormat === 'dust') { %>
             dust: {
-                files: 'app/templates',
-                tasks: "dustjs:dev"
+                files: 'app/scripts/templates/*.dust',
+                tasks: "dustjs"
             },<% } %>
             livereload: {
                 files: [
@@ -241,7 +241,15 @@ module.exports = function (grunt) {
                     dest: 'build'
                 }]
             }
+        },<% if (templateFormat === 'dust') { %>
+        dustjs: {
+            compile: {
+                files: {
+                   "app/scripts/templates/compiled.js": ["app/scripts/templates/*.dust"]
+                }
+            }
         },
+        <% } %>
         // Put files not handled in other tasks here
         copy: {
             dist: {
@@ -261,13 +269,13 @@ module.exports = function (grunt) {
         },
         concurrent: {
             server: [
-                'compass:server'
+                <% if (styleFormat === 'sass') { %>'compass:server'<% } %>
             ],
             test: [
-                'compass'
+                <% if (styleFormat === 'sass') { %>'compass'<% } %>
             ],
-            dist: [
-                'compass:dist',
+            dist: [<% if (styleFormat === 'sass') { %>
+                'compass:dist',<% } %>
                 'imagemin',
                 'svgmin',
                 'htmlmin'

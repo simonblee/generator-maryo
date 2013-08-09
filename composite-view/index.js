@@ -12,6 +12,24 @@ var CompositeViewGenerator = module.exports = function CompositeViewGenerator(ar
 
 util.inherits(CompositeViewGenerator, yeoman.generators.NamedBase);
 
+CompositeViewGenerator.prototype.askFor = function askFor() {
+    var cb = this.async(),
+        prompts = [{
+            name: 'viewName',
+            message: 'Please enter a name for your view:'
+        }];
+
+    // Prompt the user and handle the user responses
+    this.prompt(prompts, function (err, props) {
+        this.viewName = props.viewName;
+        cb();
+    }.bind(this));
+};
+
 CompositeViewGenerator.prototype.files = function files() {
-  this.copy('somefile.js', 'somefile.js');
+    var name = this.viewName || 'collectionView' + new Date().getTime();
+    this.templateName = name;
+    this.template('composite-view.js', 'app/scripts/views/'+name+'.js');
+    this.write('app/scripts/templates/'+name+'.dust', '');
+    this.write('app/scripts/templates/'+name+'Item.dust', '');
 };

@@ -1,7 +1,9 @@
 require([
     "jquery",
     "backbone",
-    "app"
+    "app",
+    "marionette"<% if (templateFormat === 'dust') { %>,
+    "dustHelpers"<% } %>
 ],
 
 function ($, Backbone, App) {

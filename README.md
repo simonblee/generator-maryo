@@ -32,14 +32,13 @@ The generator will give you the following:
 
 ## Subgenerators
 
-### Collection View
-
 ### Item View
 Comes with:
 * Item View
 * Item View Template
 * Model
 
+### Collection View
 Comes with:
 * Collection View
 * Item View
