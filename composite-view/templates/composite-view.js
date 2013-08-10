@@ -9,14 +9,10 @@ function (Backbone, Marionette) {
 
         template: '<%= templateName %>',
 
-        // MARYO GENERATED: Override if necessary
+        // OVERRIDE if not using a table with tbody as the item view container
         itemViewContainer: "tbody",
 
-        // MARYO GENERATED: Override if necessary
-        itemView: Backbone.Marionette.ItemView.extend({
-            tagName: 'tr',
-            template: '<%= templateName %>Item',
-        }),
+        itemView: <%= itemViewName %>,
 
         events: {},
 

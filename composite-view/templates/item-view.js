@@ -5,9 +5,10 @@ define([
 
 function (Backbone, Marionette) {
 
-    return Backbone.Marionette.CollectionView.extend({
+    return Backbone.Marionette.ItemView.extend({
 
-        itemView: <%= itemViewName %>,
+        // MARYO GENERATED: Override if necessary
+        template: '<%= itemTemplateName %>',
 
         events: {},
 

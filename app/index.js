@@ -11,9 +11,6 @@ var MaryoGenerator = module.exports = function MaryoGenerator(args, options, con
 
     this.on('end', function () {
         this.installDependencies({ skipInstall: options['skip-install'] });
-        // exec('bower ls --path', function (error, stdout, stderr) {
-        //     fs.readFile(path, function (err, data) {});
-        // });
     });
 
     this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
@@ -43,7 +40,7 @@ MaryoGenerator.prototype.askFor = function askFor() {
         }.bind(this));
     } else {
         var styleFormat = ['css', 'sass', 'less'],
-            templateFormat = ['_', 'dust', 'handlebars'],
+            templateFormat = ['_', 'dust'],
             testFramework = ['none', 'jasmine', 'mocha'],
             prompts = [{
                 name: 'styleFormat',
@@ -113,6 +110,7 @@ MaryoGenerator.prototype.app = function app () {
     this.mkdir('app/scripts/templates');
     this.mkdir('app/scripts/layouts');
     this.mkdir('app/scripts/regions');
+    this.mkdir('app/scripts/test');
     this.mkdir('app/styles');
     this.mkdir('app/images');
 
@@ -125,15 +123,13 @@ MaryoGenerator.prototype.app = function app () {
     this.copy('gitignore', '.gitignore');
     this.copy('bowerrc', '.bowerrc');
 
+    // TODO: Add in a base test file and test runner
+
     // Template files dependent on options
     this.template('_config.js', 'app/scripts/config.js');
     this.template('_package.json', 'package.json');
     this.template('_bower.json', 'bower.json');
     this.template('_Gruntfile.js', 'Gruntfile.js');
-}
-
-MaryoGenerator.prototype.require = function require () {
-
 }
 
 MaryoGenerator.prototype.h5bp = function h5bp () {

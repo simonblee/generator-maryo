@@ -5,9 +5,9 @@ define([
 
 function (Backbone, Marionette) {
 
-    return Backbone.Marionette.CollectionView.extend({
+    return Backbone.Marionette.ItemView.extend({
 
-        itemView: <%= itemViewName %>,
+        template: '<%= itemTemplateName %>',
 
         events: {},
 

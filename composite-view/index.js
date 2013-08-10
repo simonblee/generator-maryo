@@ -28,8 +28,38 @@ CompositeViewGenerator.prototype.askFor = function askFor() {
 
 CompositeViewGenerator.prototype.files = function files() {
     var name = this.viewName || 'collectionView' + new Date().getTime();
+
+    this.viewName = name;
     this.templateName = name;
+    this.itemViewName = name+'Item';
+    this.itemTemplateName = name+'Item';
+
+    this.template('composite-view.js', 'app/scripts/views/'+this.viewName+'.js');
+    this.template('item-view.js', 'app/scripts/views/'+this.itemViewName+'.js');
+    this.write('app/scripts/templates/'+this.templateName+'.dust', '');
+    this.write('app/scripts/templates/'+this.itemTemplateName+'.dust', '');
+};
+
+var CompositeViewGenerator = module.exports = function CompositeViewGenerator(args, options, config) {
+    if (args.length !== 2) {
+        console.log('You must provide a view name for your CollectionView and ItemView');
+        process.exit(1);
+    } else {
+        yeoman.generators.NamedBase.apply(this, arguments);
+    }
+};
+
+util.inherits(CompositeViewGenerator, yeoman.generators.NamedBase);
+
+CompositeViewGenerator.prototype.files = function files() {
+    var name, itemViewGenerator;
+
+    name = this.templateName = this.args[0];
+    this.itemViewName = this.itemTemplateName = this.args[1];
+
     this.template('composite-view.js', 'app/scripts/views/'+name+'.js');
     this.write('app/scripts/templates/'+name+'.dust', '');
-    this.write('app/scripts/templates/'+name+'Item.dust', '');
+
+    itemViewGenerator = this.env.create('maryo:item-view', {arguments: [this.args[1]]});
+    itemViewGenerator.run();
 };

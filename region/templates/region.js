@@ -1,1 +1,16 @@
-// This is a file copied by your subgenerator.
+define([
+    "underscore",
+    "backbone"
+],
+
+function (_, Backbone) {
+
+    return  Backbone.Marionette.Region.extend({
+
+        el: '',
+
+        initialize: function (options) {}
+
+    });
+
+});

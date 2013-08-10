@@ -3,15 +3,15 @@ var util = require('util');
 var yeoman = require('yeoman-generator');
 
 var RegionGenerator = module.exports = function RegionGenerator(args, options, config) {
-  // By calling `NamedBase` here, we get the argument to the subgenerator call
-  // as `this.name`.
-  yeoman.generators.NamedBase.apply(this, arguments);
-
-  console.log('You called the region subgenerator with the argument ' + this.name + '.');
+    if (args.length !== 1) {
+        console.log('You must provide a name name for your Region');
+        process.exit(1);
+    }
+    yeoman.generators.NamedBase.apply(this, arguments);
 };
 
 util.inherits(RegionGenerator, yeoman.generators.NamedBase);
 
 RegionGenerator.prototype.files = function files() {
-  this.copy('somefile.js', 'somefile.js');
+    this.copy('region.js', 'app/scripts/regions/'+this.args[0]+'.js');
 };

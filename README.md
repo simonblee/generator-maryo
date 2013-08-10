@@ -1,26 +1,24 @@
 # Generator Maryo
 [![Build Status](https://secure.travis-ci.org/simonblee/generator-marionette.png?branch=master)](https://travis-ci.org/simonblee/generator-marionette)
 
-## In dev, almost ready for use.
-
-A Marionette and Backbone generator for Yeoman. Comes with RequireJS and DustJS templates.
-
 ## The Name
-A combination of Marionette and Yeoman to give Maryo.
+A combination of Marionette and Yeoman (yo) to give Maryo, pronounced like Mario.
 
 ## Getting started
 - Make sure you have [yo](https://github.com/yeoman/yo) installed:
     `npm install -g yo`
 - Install the generator **locally**: `npm install generator-maryo`
-- Run: `yo bm`
+- Run: `yo maryo` or `yo`
 
 ## License
 [MIT License](http://en.wikipedia.org/wiki/MIT_License)
 
 ## Usage
-In all generators, files will only be created if they don't already exist.
+In all generators, files will only be created if they don't already exist. The generator can be run
+interactively from the command line or by specifying a json file with a list of all your Marionette
+objects (config file to be completed).
 
-The generator will give you the following:
+The generator will give you the following libs:
 * Backbone
 * Marionette
 * Require
@@ -30,27 +28,50 @@ The generator will give you the following:
 * Jasmine or Mocha
 * LESS or SASS (optional)
 
+The following files
+* index.html
+* config.js (require config)
+* main.js (application start)
+* app.js (Marionette application object)
+* html5 boilerplate styles
+
+The following directory structure:
+app
+    images
+    styles
+    scripts
+        collections
+        helpers
+        layouts
+        models
+        regions
+        routers
+        templates
+        views
+
 ## Subgenerators
+Run as `yo maryo:subgenerator`
 
 ### Item View
-Comes with:
-* Item View
-* Item View Template
-* Model
+`yo maryo:item-view itemViewName`
+* ItemView
+* ItemView template
 
 ### Collection View
-Comes with:
-* Collection View
-* Item View
-* Item View Template
-* Collection
-* Model
+`yo maryo:collection-view collectionViewName itemViewName`
+* CollectionView
+* ItemView
+* ItemView template
 
 ### Composite View
-Comes with:
-* Composite View
-* Composite View Template
-* Item View
-* Item View Template
-* Collection
-* Model
+`yo maryo:composite-view compositeViewName itemViewName`
+* CompositeView
+* CompositeView template
+* ItemView
+* ItemView template
+
+### Region
+`yo maryo:region regionName`
+
+### Models, Collections, Routers
+TODO: Call backbone yeoman generator from within this generator.

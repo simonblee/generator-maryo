@@ -1,11 +1,19 @@
 {
   "name": "generator-maryo",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A Marionette and backbone generator for Yeoman with Require and Dust templates.",
-  "keywords": [],
   "homepage": "https://github.com/simonblee/generator-maryo",
   "bugs": "https://github.com/simonblee/generator-maryo/issues",
   "author": "Simon Blee",
+  "keywords": [
+    "yeoman",
+    "generator",
+    "yeoman-generator",
+    "marionette",
+    "backbone",
+    "dust",
+    "dustjs"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/simonblee/generator-maryo.git"

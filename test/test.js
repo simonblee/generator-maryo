@@ -4,40 +4,17 @@ var path    = require('path');
 var helpers = require('yeoman-generator').test;
 var assert  = require('assert');
 
-// XXX With current API, (prior v2), that's a complete mess to setup generators
-// if they differ from the standard lib/generators layout.
-//
-// Even for workarounds, the API is awful and doesn't let you do anything.
-//
-// With the new API, it will be much easier to manually register one or a set
-// of generators, and manage multiple environments.
-//
-// Something like:
-//
-//    generators()
-//      .register(require('../all'), 'backbone:all')
-//      .register(require('../app'), 'backbone:app')
-//      .register(require('../view'), 'backbone:view')
-//      .register(require('../router'), 'backbone:router')
-//      .register(require('../model'), 'backbone:model')
-//      .register(require('../collection'), 'backbone:collection')
-//
-// Or for the lazy guy:
-//
-//    generators()
-//      .lookup('*:*', path.join(__dirname, '..'))
-//
-
 describe('Marionette generator test', function () {
 
     beforeEach(function (done) {
+        this.env
         // Clean and create temp test directory for the app
         helpers.testDirectory(path.join(__dirname, './temp'), function (err) {
             if (err) return done(err);
 
             // Set up the application
             this.marionette = {};
-            this.marionette.app = helpers.createGenerator('marionette:app', [
+            this.marionette.app = helpers.createGenerator('maryo:app', [
                 '../../app',
                 [helpers.createDummyGenerator(), 'mocha:app']
             ]);
@@ -57,7 +34,6 @@ describe('Marionette generator test', function () {
 
     it('every generator can be required without throwing', function () {
         this.app = require('../app');
-        this.application = require('../application');
         this.compositeView = require('../composite-view');
         this.collectionView = require('../collection-view');
         this.itemView = require('../item-view');
@@ -90,11 +66,95 @@ describe('Marionette generator test', function () {
         });
     });
 
-    it.skip('has dust renderer when app uses dust templates', function(){
+    it('collection-view subgenerator creates files correctly', function (done) {
+        var collectionViewName = 'myCollectionViewName',
+            itemViewName = 'myItemViewName';
 
+        // Set up the view generator
+        prepareSubgenerator.call(this, 'collection-view', [collectionViewName, itemViewName]);
+
+        // Test for created files
+        var expected = [
+            'app/scripts/templates/'+itemViewName+'.dust',
+            'app/scripts/views/'+itemViewName+'.js',
+            'app/scripts/views/'+collectionViewName+'.js',
+        ];
+
+        this.marionette.subgenerator.run({}, function () {
+            helpers.assertFiles(expected);
+            done();
+        });
     });
 
-    it.skip('has handlebars renderer when app uses handlebars templates', function(){
+    it('composite-view subgenerator creates files correctly', function (done) {
+        var compositeViewName = 'myCompositeViewName',
+            itemViewName = 'myItemViewName';
 
+        // Set up the view generator
+        prepareSubgenerator.call(this, 'composite-view', [compositeViewName, itemViewName]);
+
+        // Test for created files
+        var expected = [
+            'app/scripts/templates/'+itemViewName+'.dust',
+            'app/scripts/templates/'+compositeViewName+'.dust',
+            'app/scripts/views/'+itemViewName+'.js',
+            'app/scripts/views/'+compositeViewName+'.js',
+        ];
+
+        this.marionette.subgenerator.run({}, function () {
+            helpers.assertFiles(expected);
+            done();
+        });
     });
+
+    it('layout subgenerator creates files correctly', function (done) {
+        var layoutName = 'myCompositeViewName';
+
+        // Set up the view generator
+        prepareSubgenerator.call(this, 'layout', [layoutName]);
+
+        // Test for created files
+        var expected = [
+            'app/scripts/templates/'+layoutName+'.dust',
+            'app/scripts/layouts/'+layoutName+'.js'
+        ];
+
+        this.marionette.subgenerator.run({}, function () {
+            helpers.assertFiles(expected);
+            done();
+        });
+    });
+
+    it('region subgenerator creates files correctly', function (done) {
+        var regionName = 'myRegion';
+
+        // Set up the view generator
+        prepareSubgenerator.call(this, 'region', [regionName]);
+
+        // Test for created files
+        var expected = [
+            'app/scripts/regions/'+regionName+'.js'
+        ];
+
+        this.marionette.subgenerator.run({}, function () {
+            helpers.assertFiles(expected);
+            done();
+        });
+    });
+
+    function prepareSubgenerator (subgeneratorName, args) {
+        this.marionette.subgenerator = helpers.createGenerator(
+            'maryo:'+subgeneratorName,
+            [
+                '../../'+subgeneratorName,
+                [helpers.createDummyGenerator(), 'mocha:'+subgeneratorName]
+            ],
+            args
+        );
+        this.marionette.subgenerator.options['skip-install'] = true;
+        this.marionette.subgenerator.env.register('../../item-view');
+    }
+
+    it.skip('has dust renderer when app uses dust templates', function () {});
+    it.skip('has handlebars renderer when app uses handlebars templates', function () {});
 });
