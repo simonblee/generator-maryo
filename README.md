@@ -54,17 +54,20 @@ Run as `yo maryo:subgenerator`
 
 ### Item View
 `yo maryo:item-view itemViewName`
+What you get:
 * ItemView
 * ItemView template
 
 ### Collection View
 `yo maryo:collection-view collectionViewName itemViewName`
+What you get:
 * CollectionView
 * ItemView
 * ItemView template
 
 ### Composite View
 `yo maryo:composite-view compositeViewName itemViewName`
+What you get:
 * CompositeView
 * CompositeView template
 * ItemView
@@ -72,6 +75,7 @@ Run as `yo maryo:subgenerator`
 
 ### Region
 `yo maryo:region regionName`
+You get a region object.
 
 ### Models, Collections, Routers
 TODO: Call backbone yeoman generator from within this generator.
