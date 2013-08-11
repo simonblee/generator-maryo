@@ -1,7 +1,6 @@
 define([
     "underscore",
-    "backbone",
-    "compiled"
+    "backbone"
 ],
 
 function (_, Backbone) {

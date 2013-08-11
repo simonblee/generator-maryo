@@ -115,6 +115,7 @@ MaryoGenerator.prototype.app = function app () {
     this.mkdir('app/images');
 
     // Copy files
+    this.copy('app.js', 'app/scripts/app.js');
     this.copy('main.js', 'app/scripts/main.js');
     this.copy('index.html', 'app/index.html');
     this.copy('editorconfig', '.editorconfig');
