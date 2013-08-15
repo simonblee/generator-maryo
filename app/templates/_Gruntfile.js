@@ -25,7 +25,7 @@ module.exports = function (grunt) {
         yeoman: yeomanConfig,
         watch: {<% if (styleFormat === 'sass') { %>
             compass: {
-                files: ['<%= _.slugify(appname) %>/styles/{,*/}*.{scss,sass}'],
+                files: ['app/styles/{,*/}*.{scss,sass}'],
                 tasks: ['compass:server']
             },<% } if (styleFormat === 'less') { %>
             less: {
@@ -38,10 +38,10 @@ module.exports = function (grunt) {
             },<% } %>
             livereload: {
                 files: [
-                    '<%= _.slugify(appname) %>/*.html',
-                    '{.tmp,<%= _.slugify(appname) %>}/styles/{,*/}*.css',
-                    '{.tmp,<%= _.slugify(appname) %>}/scripts/{,*/}*.js',
-                    '<%= _.slugify(appname) %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+                    'app/*.html',
+                    '{.tmp,app}/styles/{,*/}*.css',
+                    '{.tmp,app}/scripts/{,*/}*.js',
+                    'app/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
                 ],
                 tasks: ['livereload']
             }
@@ -107,8 +107,8 @@ module.exports = function (grunt) {
             },
             all: [
                 'Gruntfile.js',
-                '<%= _.slugify(appname) %>/scripts/{,*/}*.js',
-                '!<%= _.slugify(appname) %>/scripts/vendor/*',
+                'app/scripts/{,*/}*.js',
+                '!app/scripts/vendor/*',
                 'test/spec/{,*/}*.js'
             ]
         },<% if (testFramework === 'mocha') { %>
@@ -130,12 +130,12 @@ module.exports = function (grunt) {
         },<% } if (styleFormat === 'sass') { %>
         compass: {
             options: {
-                sassDir: '<%= _.slugify(appname) %>/styles',
+                sassDir: 'app/styles',
                 cssDir: '.tmp/styles',
-                imagesDir: '<%= _.slugify(appname) %>/images',
-                javascriptsDir: '<%= _.slugify(appname) %>/scripts',
-                fontsDir: '<%= _.slugify(appname) %>/styles/fonts',
-                importPath: '<%= _.slugify(appname) %>/bower_components',
+                imagesDir: 'app/images',
+                javascriptsDir: 'app/scripts',
+                fontsDir: 'app/styles/fonts',
+                importPath: 'app/bower_components',
                 httpImagesPath: '/images',
                 httpGeneratedImagesPath: '/images',
                 relativeAssets: false
@@ -190,7 +190,7 @@ module.exports = function (grunt) {
             }
         },
         useminPrepare: {
-            html: '<%= _.slugify(appname) %>/index.html',
+            html: 'app/index.html',
             options: {
                 dest: 'build'
             }
@@ -206,7 +206,7 @@ module.exports = function (grunt) {
             dist: {
                 files: [{
                     expand: true,
-                    cwd: '<%= _.slugify(appname) %>/images',
+                    cwd: 'app/images',
                     src: '{,*/}*.{png,jpg,jpeg}',
                     dest: 'build/images'
                 }]
@@ -216,7 +216,7 @@ module.exports = function (grunt) {
             dist: {
                 files: [{
                     expand: true,
-                    cwd: '<%= _.slugify(appname) %>/images',
+                    cwd: 'app/images',
                     src: '{,*/}*.svg',
                     dest: 'build/images'
                 }]
@@ -227,7 +227,7 @@ module.exports = function (grunt) {
                 files: {
                     'build/styles/main.css': [
                         '.tmp/styles/{,*/}*.css',
-                        '<%= _.slugify(appname) %>/styles/{,*/}*.css'
+                        'app/styles/{,*/}*.css'
                     ]
                 }
             }
@@ -236,7 +236,7 @@ module.exports = function (grunt) {
             dist: {
                 files: [{
                     expand: true,
-                    cwd: '<%= _.slugify(appname) %>',
+                    cwd: 'app',
                     src: '*.html',
                     dest: 'build'
                 }]
@@ -256,7 +256,7 @@ module.exports = function (grunt) {
                 files: [{
                     expand: true,
                     dot: true,
-                    cwd: '<%= _.slugify(appname) %>',
+                    cwd: 'app',
                     dest: 'build',
                     src: [
                         '*.{ico,txt}',

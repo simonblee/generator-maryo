@@ -3,7 +3,7 @@ require([
     "backbone",
     "app",
     "marionette"<% if (templateFormat === 'dust') { %>,
-    "templates/helpers",
+    "templates",
     "dustHelpers"<% } %>
 ],
 
