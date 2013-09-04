@@ -5,6 +5,7 @@ var path = require('path');
 var fs = require('fs');
 var yeoman = require('yeoman-generator');
 var exec = require('child_process').exec;
+var chalk = require('chalk');
 
 var MaryoGenerator = module.exports = function MaryoGenerator(args, options, config) {
     yeoman.generators.Base.apply(this, arguments);
@@ -16,7 +17,7 @@ var MaryoGenerator = module.exports = function MaryoGenerator(args, options, con
     this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
 }
 
-util.inherits(MaryoGenerator, yeoman.generators.NamedBase);
+util.inherits(MaryoGenerator, yeoman.generators.Base);
 
 MaryoGenerator.prototype.askFor = function askFor() {
     var cb = this.async();
@@ -67,13 +68,13 @@ MaryoGenerator.prototype.askFor = function askFor() {
         console.log(
             '\n     _-----_' +
             '\n    |       |' +
-            '\n    |' + '--(o)--'.red + '|   .--------------------------.' +
-            '\n   `---------´  |    ' + 'Welcome to Yeoman,'.yellow.bold + '    |' +
-            '\n    ' + '( '.yellow + '_' + '´U`'.yellow + '_' + ' )'.yellow + '   |   ' + 'ladies and gentlemen!'.yellow.bold + '  |' +
+            '\n    |' + chalk.red('--(o)--') + '|   .--------------------------.' +
+            '\n   `---------´  |    ' + chalk.yellow.bold('Welcome to Yeoman') + ',    |' +
+            '\n    ' + chalk.yellow('(') + ' _' + chalk.yellow('´U`') + '_ ' + chalk.yellow(')') + '   |   ' + chalk.yellow.bold('ladies and gentlemen!') + '  |' +
             '\n    /___A___\\   \'__________________________\'' +
-            '\n     |  ~  |'.yellow +
-            '\n   __' + '\'.___.\''.yellow + '__' +
-            '\n ´   ' + '`  |'.red + '° ' + '´ Y'.red + ' `\n\n' +
+            '\n     ' + chalk.yellow('|  ~  |') +
+            '\n   __' + chalk.yellow('\'.___.\'') + '__' +
+            '\n ´   ' + chalk.red('`  |') + '° ' + chalk.red('´ Y') + ' `\n' +
             'Let\'s dance with Marionette.\n\n'
         );
 
