@@ -79,7 +79,7 @@ MaryoGenerator.prototype.askFor = function askFor() {
         );
 
         // Prompt the user and handle the user responses
-        this.prompt(prompts, function (err, props) {
+        this.prompt(prompts, function (props, err) {
             this.styleFormat = props.styleFormat || styleFormat[0];
             this.templateFormat = props.templateFormat || templateFormat[0];
             this.testFramework = props.testFramework || testFramework[0];
