@@ -19,7 +19,7 @@
     "grunt-contrib-compass": "0.2.0",<% } if (testFramework === 'jasmine') { %>
     "grunt-contrib-jasmine": "~0.4.2",<% } if (testFramework === 'mocha') { %>
     "grunt-mocha": "~0.3.0",<% } %>
-    "grunt-requirejs": "~0.3.5",
+    "grunt-requirejs": "~0.4.0",
     "grunt-bower-requirejs": "~0.4.3",<% if (templateFormat === 'dust') { %>
     "grunt-dustjs": "~1.1.1", <% } if (templateFormat === 'handlebars') { %>
     "grunt-contrib-handlebars": "~0.5.8",
