@@ -35,7 +35,7 @@ The following files
 * app.js (Marionette application object)
 * html5 boilerplate styles
 
-The following directory structure:
+The following directory structure:  
 app  
 ----images  
 ----styles  
