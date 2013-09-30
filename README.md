@@ -37,17 +37,17 @@ The following files
 
 The following directory structure:
 app
-    images
-    styles
-    scripts
-        collections
-        helpers
-        layouts
-        models
-        regions
-        routers
-        templates
-        views
+----images
+----styles
+----scripts
+--------collections
+--------helpers
+--------layouts
+--------models
+--------regions
+--------routers
+--------templates
+--------views
 
 ## Subgenerators
 Run as `yo maryo:subgenerator`
