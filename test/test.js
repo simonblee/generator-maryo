@@ -3,6 +3,13 @@
 var path    = require('path');
 var helpers = require('yeoman-generator').test;
 var assert  = require('assert');
+var promptOptions = {
+    styleFormat: 'less',
+    templateFormat: 'dust',
+    testFramework: 'jasmine',
+    includeRequireJS: 'Y',
+    includeBootstrap: 'N'
+}
 
 describe('Marionette generator test', function () {
 
@@ -20,13 +27,7 @@ describe('Marionette generator test', function () {
             ]);
             this.marionette.app.options['skip-install'] = true;
 
-            helpers.mockPrompt(this.marionette.app, {
-                'styleFormat': 'less',
-                'templateFormat': 'dust',
-                'testFramework': 'jasmine',
-                'includeRequireJS': 'Y',
-                'includeBootstrap': 'N'
-            });
+            helpers.mockPrompt(this.marionette.app, promptOptions);
 
             done();
         }.bind(this));
@@ -48,6 +49,7 @@ describe('Marionette generator test', function () {
             ['bower.json', /"name": "temp"/],
             ['package.json', /"name": "temp"/],
             'Gruntfile.js',
+            'maryo.json',
             '.gitignore',
             '.gitattributes',
             '.bowerrc',
@@ -66,6 +68,21 @@ describe('Marionette generator test', function () {
         });
     });
 
+    it('item-view subgenerator creates files correctly', function (done) {
+        var itemViewName = 'myItemViewName';
+
+        // Set up the view generator
+        prepareSubgenerator.call(this, 'item-view', [itemViewName]);
+
+        // Test for created files
+        var expected = [
+            'app/scripts/templates/'+itemViewName+'.'+promptOptions.templateFormat,
+            'app/scripts/views/'+itemViewName+'.js',
+        ];
+
+        verifySubgeneratorFiles(this.marionette, expected, done);
+    });
+
     it('collection-view subgenerator creates files correctly', function (done) {
         var collectionViewName = 'myCollectionViewName',
             itemViewName = 'myItemViewName';
@@ -75,15 +92,12 @@ describe('Marionette generator test', function () {
 
         // Test for created files
         var expected = [
-            'app/scripts/templates/'+itemViewName+'.dust',
+            'app/scripts/templates/'+itemViewName+'.'+promptOptions.templateFormat,
             'app/scripts/views/'+itemViewName+'.js',
             'app/scripts/views/'+collectionViewName+'.js',
         ];
 
-        this.marionette.subgenerator.run({}, function () {
-            helpers.assertFiles(expected);
-            done();
-        });
+        verifySubgeneratorFiles(this.marionette, expected, done);
     });
 
     it('composite-view subgenerator creates files correctly', function (done) {
@@ -95,16 +109,13 @@ describe('Marionette generator test', function () {
 
         // Test for created files
         var expected = [
-            'app/scripts/templates/'+itemViewName+'.dust',
-            'app/scripts/templates/'+compositeViewName+'.dust',
+            'app/scripts/templates/'+itemViewName+'.'+promptOptions.templateFormat,
+            'app/scripts/templates/'+compositeViewName+'.'+promptOptions.templateFormat,
             'app/scripts/views/'+itemViewName+'.js',
             'app/scripts/views/'+compositeViewName+'.js',
         ];
 
-        this.marionette.subgenerator.run({}, function () {
-            helpers.assertFiles(expected);
-            done();
-        });
+        verifySubgeneratorFiles(this.marionette, expected, done);
     });
 
     it('layout subgenerator creates files correctly', function (done) {
@@ -115,14 +126,11 @@ describe('Marionette generator test', function () {
 
         // Test for created files
         var expected = [
-            'app/scripts/templates/'+layoutName+'.dust',
+            'app/scripts/templates/'+layoutName+'.'+promptOptions.templateFormat,
             'app/scripts/layouts/'+layoutName+'.js'
         ];
 
-        this.marionette.subgenerator.run({}, function () {
-            helpers.assertFiles(expected);
-            done();
-        });
+        verifySubgeneratorFiles(this.marionette, expected, done);
     });
 
     it('region subgenerator creates files correctly', function (done) {
@@ -136,10 +144,7 @@ describe('Marionette generator test', function () {
             'app/scripts/regions/'+regionName+'.js'
         ];
 
-        this.marionette.subgenerator.run({}, function () {
-            helpers.assertFiles(expected);
-            done();
-        });
+        verifySubgeneratorFiles(this.marionette, expected, done);
     });
 
     function prepareSubgenerator (subgeneratorName, args) {
@@ -157,4 +162,13 @@ describe('Marionette generator test', function () {
 
     it.skip('has dust renderer when app uses dust templates', function () {});
     it.skip('has handlebars renderer when app uses handlebars templates', function () {});
+
+    function verifySubgeneratorFiles (generator, files, done) {
+        generator.app.run({}, function () {
+            generator.subgenerator.run({}, function () {
+                helpers.assertFiles(files);
+                done();
+            });
+        });
+    }
 });

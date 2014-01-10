@@ -13,6 +13,10 @@ A combination of Marionette and Yeoman (yo) to give Maryo, pronounced like Mario
 ## License
 [MIT License](http://en.wikipedia.org/wiki/MIT_License)
 
+## TODO
+* Underscore precompilation with grunt (same as dust)
+* Models, Collections, Routers - Call backbone yeoman generator from within this generator
+
 ## Usage
 In all generators, files will only be created if they don't already exist. The generator can be run
 interactively from the command line or by specifying a json file with a list of all your Marionette
@@ -80,6 +84,3 @@ What you get:
 `yo maryo:region regionName`
 
 You get a region object.
-
-### Models, Collections, Routers
-TODO: Call backbone yeoman generator from within this generator.

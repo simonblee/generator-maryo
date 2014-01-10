@@ -132,6 +132,7 @@ MaryoGenerator.prototype.app = function app () {
     this.template('_package.json', 'package.json');
     this.template('_bower.json', 'bower.json');
     this.template('_Gruntfile.js', 'Gruntfile.js');
+    this.template('_maryo.json', 'maryo.json');
 }
 
 MaryoGenerator.prototype.h5bp = function h5bp () {

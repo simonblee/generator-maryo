@@ -1,6 +1,6 @@
 'use strict';
 var util = require('util');
-var yeoman = require('yeoman-generator');
+var maryoNamedBase = require('../lib/maryo-named-base');
 var exec = require('child_process').exec;
 
 var CollectionViewGenerator = module.exports = function CollectionViewGenerator(args, options, config) {
@@ -8,11 +8,11 @@ var CollectionViewGenerator = module.exports = function CollectionViewGenerator(
         console.log('You must provide a view name for your CollectionView and ItemView');
         process.exit(1);
     } else {
-        yeoman.generators.NamedBase.apply(this, arguments);
+        maryoNamedBase.apply(this, arguments);
     }
 };
 
-util.inherits(CollectionViewGenerator, yeoman.generators.NamedBase);
+util.inherits(CollectionViewGenerator, maryoNamedBase);
 
 CollectionViewGenerator.prototype.files = function files() {
     this.itemViewName = this.args[1];

@@ -15,5 +15,5 @@ util.inherits(LayoutGenerator, yeoman.generators.NamedBase);
 LayoutGenerator.prototype.files = function files() {
     this.templateName = this.args[0];
     this.template('layout.js', 'app/scripts/layouts/'+this.args[0]+'.js');
-    this.write('app/scripts/templates/'+this.args[0]+'.dust', '');
+    this.write('app/scripts/templates/'+this.args[0]+'.'+this.getTemplateFormat(), '');
 };

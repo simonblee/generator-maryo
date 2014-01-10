@@ -1,0 +1,5 @@
+{
+    "styleFormat": "<%= styleFormat %>",
+    "testFramework": "<%= testFramework %>",
+    "templateFormat": "<%= templateFormat %>"
+}
