@@ -39,19 +39,19 @@ The following files
 * app.js (Marionette application object)
 * html5 boilerplate styles
 
-The following directory structure:
-app
-    images
-    styles
-    scripts
-        collections
-        helpers
-        layouts
-        models
-        regions
-        routers
-        templates
-        views
+The following directory structure:  
+app  
+----images  
+----styles  
+----scripts  
+--------collections  
+--------helpers  
+--------layouts  
+--------models  
+--------regions  
+--------routers  
+--------templates  
+--------views  
 
 ## Subgenerators
 Run as `yo maryo:subgenerator`
