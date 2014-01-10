@@ -1,6 +1,7 @@
 define([
     "underscore",
-    "backbone"
+    "backbone",
+    "marionette"
 ],
 
 function (_, Backbone) {
