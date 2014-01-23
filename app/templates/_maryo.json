@@ -1,5 +1,20 @@
 {
     "styleFormat": "<%= styleFormat %>",
     "testFramework": "<%= testFramework %>",
-    "templateFormat": "<%= templateFormat %>"
+    "templateFormat": "<%= templateFormat %>",
+    "directories": {
+        "styles": "<%= styleDirectory %>",
+        "images": "<%= imageDirectory %>",
+        "scripts": {
+            "root": "<%= rootDirectory %>",
+            "collections": "<%= collectionsDirectory %>",
+            "models": "<%= modelsDirectory %>",
+            "views": "<%= viewsDirectory %>",
+            "routers": "<%= routersDirectory %>",
+            "templates": "<%= templatesDirectory %>",
+            "layouts": "<%= layoutsDirectory %>",
+            "regions": "<%= regionsDirectory %>",
+            "test": "<%= testDirectory %>"
+        }
+    }
 }
