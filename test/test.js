@@ -39,10 +39,8 @@ describe('Marionette generator test', function () {
         this.compositeView = require('../composite-view');
         this.collectionView = require('../collection-view');
         this.itemView = require('../item-view');
-        this.view = require('../view');
         this.layout = require('../layout');
         this.region = require('../region');
-        this.regionManager = require('../region-manager');
         this.router = require('../router');
     });
 
