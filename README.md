@@ -1,6 +1,9 @@
 # Generator Maryo
 [![Build Status](https://secure.travis-ci.org/simonblee/generator-marionette.png?branch=master)](https://travis-ci.org/simonblee/generator-marionette)
 
+## Overview
+Scaffold tool for Backbone, Marionette and Dust javascript projects. 
+
 ## The Name
 A combination of Marionette and Yeoman (yo) to give Maryo, pronounced like Mario.
 
