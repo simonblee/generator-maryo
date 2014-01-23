@@ -35,6 +35,7 @@ describe('Marionette generator test', function () {
 
     it('every generator can be required without throwing', function () {
         this.app = require('../app');
+        this.controller = require('../controller');
         this.compositeView = require('../composite-view');
         this.collectionView = require('../collection-view');
         this.itemView = require('../item-view');
@@ -42,6 +43,7 @@ describe('Marionette generator test', function () {
         this.layout = require('../layout');
         this.region = require('../region');
         this.regionManager = require('../region-manager');
+        this.router = require('../router');
     });
 
     it('creates expected files', function (done) {
@@ -133,6 +135,18 @@ describe('Marionette generator test', function () {
         verifySubgeneratorFiles(this.marionette, expected, done);
     });
 
+    it('controller subgenerator creates files correctly', function (done) {
+        var controllerName = 'myController';
+        prepareSubgenerator.call(this, 'controller', [controllerName]);
+
+        // Test for created files
+        var expected = [
+            'app/scripts/controllers/'+controllerName+'.js'
+        ];
+
+        verifySubgeneratorFiles(this.marionette, expected, done);
+    });
+
     it('region subgenerator creates files correctly', function (done) {
         var regionName = 'myRegion';
 
@@ -147,6 +161,27 @@ describe('Marionette generator test', function () {
         verifySubgeneratorFiles(this.marionette, expected, done);
     });
 
+    it('router subgenerator creates files correctly', function (done) {
+        var routerName = 'myrouter';
+
+        // Set up the view generator
+        prepareSubgenerator.call(this, 'router', [routerName]);
+
+        // Test for created files
+        var expected = [
+            'app/scripts/routers/'+routerName+'.js'
+        ];
+
+        verifySubgeneratorFiles(this.marionette, expected, done);
+    });
+
+    it.skip('has dust renderer when app uses dust templates', function () {});
+    it.skip('has underscore renderer when app uses underscore templates', function () {});
+
+    //
+    // Utility Functions
+    //
+
     function prepareSubgenerator (subgeneratorName, args) {
         this.marionette.subgenerator = helpers.createGenerator(
             'maryo:'+subgeneratorName,
@@ -159,9 +194,6 @@ describe('Marionette generator test', function () {
         this.marionette.subgenerator.options['skip-install'] = true;
         this.marionette.subgenerator.env.register('../../item-view');
     }
-
-    it.skip('has dust renderer when app uses dust templates', function () {});
-    it.skip('has handlebars renderer when app uses handlebars templates', function () {});
 
     function verifySubgeneratorFiles (generator, files, done) {
         generator.app.run({}, function () {

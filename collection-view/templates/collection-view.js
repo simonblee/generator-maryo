@@ -1,11 +1,10 @@
 define([
-    'backbone',
     'marionette'
 ],
 
-function (Backbone, Marionette) {
+function (Marionette) {
 
-    return Backbone.Marionette.CollectionView.extend({
+    return Marionette.CollectionView.extend({
 
         itemView: <%= itemViewName %>,
 

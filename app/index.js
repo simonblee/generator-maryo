@@ -105,6 +105,7 @@ MaryoGenerator.prototype.app = function app () {
     this.mkdir('app');
     this.mkdir('app/scripts');
     this.mkdir('app/scripts/collections');
+    this.mkdir('app/scripts/controllers');
     this.mkdir('app/scripts/models');
     this.mkdir('app/scripts/views');
     this.mkdir('app/scripts/routers');

@@ -1,13 +1,12 @@
 define([
-    "underscore",
-    "backbone"
+    "marionette"
 ],
 
-function (_, Backbone) {
+function (Marionette) {
 
-    return  Backbone.Marionette.Region.extend({
+    return  Marionette.Region.extend({
 
-        el: '',
+        el: '', // better yet, pass in as parameter in options hash
 
         initialize: function (options) {}
 
