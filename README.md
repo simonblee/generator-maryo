@@ -2,7 +2,7 @@
 [![Build Status](https://secure.travis-ci.org/simonblee/generator-marionette.png?branch=master)](https://travis-ci.org/simonblee/generator-marionette)
 
 ## Overview
-Scaffold tool for Backbone, Marionette and Dust javascript projects. 
+Scaffold tool for Backbone and Marionette javascript projects. 
 
 ## The Name
 A combination of Marionette and Yeoman (yo) to give Maryo, pronounced like Mario.
@@ -31,7 +31,7 @@ The generator will give you the following libraries:
 * [Backbone](http://backbonejs.org/)
 * [Marionette](http://marionettejs.com/)
 * [Require](http://requirejs.org/)
-* [Dust](http://linkedin.github.io/dustjs/) (LinkedIn's fork)
+* [Dust](http://linkedin.github.io/dustjs/) (optional) (LinkedIn's fork)
 * [Underscore](http://underscorejs.org/) ([lodash](http://lodash.com/))
 * [Grunt](http://gruntjs.com/)
 * [Jasmine](http://pivotal.github.io/jasmine/) or [Mocha](http://visionmedia.github.io/mocha/)
