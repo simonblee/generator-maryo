@@ -26,15 +26,18 @@ In all generators, files will only be created if they don't already exist. The g
 interactively from the command line or by specifying a json file with a list of all your Marionette
 objects (config file to be completed).
 
-The generator will give you the following libs:
-* Backbone
-* Marionette
-* Require
-* Dust
-* Underscore (lodash)
-* Grunt
-* Jasmine or Mocha
-* LESS or SASS (optional)
+The generator will give you the following libraries:
+* [Backbone](http://backbonejs.org/)
+* [Marionette](http://marionettejs.com/)
+* [Require](http://requirejs.org/)
+* [Dust](http://linkedin.github.io/dustjs/) (LinkedIn's fork)
+* [Underscore](http://underscorejs.org/) ([lodash](http://lodash.com/))
+* [Grunt](http://gruntjs.com/)
+* [Jasmine](http://pivotal.github.io/jasmine/) or [Mocha](http://visionmedia.github.io/mocha/)
+* [LESS](http://www.lesscss.org/) or [SASS](http://sass-lang.com/) (both optional)
+
+Libraries are delivered using [Bower](http://bower.io/). If you need different versions, simply change
+them in `bower.json` and then run `bower update`.
 
 The following files
 * index.html
@@ -58,7 +61,8 @@ ________templates
 ________views  
 
 ## Subgenerators
-Run as `yo maryo:subgenerator`
+Run as `yo maryo:subgenerator`. To generate backbone objects, use the yeoman backbone generator
+[here](https://github.com/yeoman/generator-backbone).
 
 ### Controller
 `yo maryo:controller controllerName`
