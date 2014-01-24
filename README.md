@@ -19,6 +19,7 @@ A combination of Marionette and Yeoman (yo) to give Maryo, pronounced like Mario
 ## TODO
 * Underscore precompilation with grunt (same as dust)
 * Models, Collections, Routers - Call backbone yeoman generator from within this generator
+* Customisable directory structure
 
 ## Usage
 In all generators, files will only be created if they don't already exist. The generator can be run
@@ -42,22 +43,27 @@ The following files
 * app.js (Marionette application object)
 * html5 boilerplate styles
 
-The following directory structure:  
+The following directory structure:
 app  
-----images  
-----styles  
-----scripts  
---------collections  
---------helpers  
---------layouts  
---------models  
---------regions  
---------routers  
---------templates  
---------views  
+____images  
+____styles  
+____scripts  
+________collections  
+________helpers  
+________layouts  
+________models  
+________regions  
+________routers  
+________templates  
+________views  
 
 ## Subgenerators
 Run as `yo maryo:subgenerator`
+
+### Controller
+`yo maryo:controller controllerName`
+
+You get a Controller object
 
 ### Item View
 `yo maryo:item-view itemViewName`
@@ -83,7 +89,19 @@ What you get:
 * ItemView
 * ItemView template
 
+### Layout
+`yo maryo:layout layoutName`
+
+What you get:
+* Layout
+* Layout template
+
 ### Region
 `yo maryo:region regionName`
 
 You get a region object.
+
+### Router
+`yo maryo:router routerName`
+
+You get an AppRouter object
