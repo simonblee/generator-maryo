@@ -27,6 +27,7 @@ interactively from the command line or by specifying a json file with a list of 
 objects (config file to be completed).
 
 The generator will give you the following libraries:
+
 * [Backbone](http://backbonejs.org/)
 * [Marionette](http://marionettejs.com/)
 * [Require](http://requirejs.org/)
@@ -39,7 +40,8 @@ The generator will give you the following libraries:
 Libraries are delivered using [Bower](http://bower.io/). If you need different versions, simply change
 them in `bower.json` and then run `bower update`.
 
-The following files
+The following files:
+
 * index.html
 * config.js (require config)
 * main.js (application start)
@@ -47,6 +49,7 @@ The following files
 * html5 boilerplate styles
 
 The following directory structure:
+
 app  
 ____images  
 ____styles  
