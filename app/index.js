@@ -60,7 +60,7 @@ MaryoGenerator.prototype.askFor = function askFor() {
             },
             {
                 name: 'includeBootstrap',
-                message: 'Would you like to include Twitter Bootstrap (y)?',
+                message: 'Would you like to include Bootstrap (y)?',
                 type: 'confirm'
             }];
 
