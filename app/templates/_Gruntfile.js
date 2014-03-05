@@ -30,7 +30,7 @@ module.exports = function (grunt) {
             },<% } if (styleFormat === 'less') { %>
             less: {
                 files: 'app/styles',
-                tasks: "less:dev"
+                tasks: "less:development"
             },<% } if (templateFormat === 'dust') { %>
             dust: {
                 files: 'app/scripts/templates/*.dust',
