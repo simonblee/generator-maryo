@@ -150,20 +150,26 @@ module.exports = function (grunt) {
         less: {
             development: {
                 options: {
-                    paths: ["assets/css"]
+                    paths: ["app/styles/less"]
                 },
-                files: {
-                    "path/to/result.css": "path/to/source.less"
-                }
+                expand: true,
+                flatten: true,
+                cwd: "app/styles/less",
+                src: "*.less",
+                dest: "app/styles/",
+                ext: ".css"
             },
             production: {
                 options: {
-                    paths: ["assets/css"],
+                    paths: ["app/styles/less"],
                     yuicompress: true
                 },
-                files: {
-                    "path/to/result.css": "path/to/source.less"
-                }
+                expand: true,
+                flatten: true,
+                cwd: "app/styles/less",
+                src: "*.less",
+                dest: "app/styles/",
+                ext: ".css"
             }
         },<% } %>
         requirejs: {
