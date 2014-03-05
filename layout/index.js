@@ -1,16 +1,17 @@
 'use strict';
 var util = require('util');
-var yeoman = require('yeoman-generator');
+var maryoNamedBase = require('../lib/maryo-named-base');
 
 var LayoutGenerator = module.exports = function LayoutGenerator(args, options, config) {
     if (args.length !== 1) {
         console.log('You must provide a name name for your Layout');
         process.exit(1);
+    } else {
+        maryoNamedBase.apply(this, arguments);
     }
-    yeoman.generators.NamedBase.apply(this, arguments);
 };
 
-util.inherits(LayoutGenerator, yeoman.generators.NamedBase);
+util.inherits(LayoutGenerator, maryoNamedBase);
 
 LayoutGenerator.prototype.files = function files() {
     this.templateName = this.args[0];
