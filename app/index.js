@@ -141,8 +141,8 @@ MaryoGenerator.prototype.h5bp = function h5bp () {
         cb = this.async();
 
     this.remote('h5bp', 'html5-boilerplate', function (err, remote) {
-        remote.copy('./css/normalize.css', 'app/styles/normalize.css');
-        remote.copy('./css/main.css', 'app/styles/main.css');
+        remote.copy('./dist/css/normalize.css', 'app/styles/normalize.css');
+        remote.copy('./dist/css/main.css', 'app/styles/main.css');
         cb();
     }.bind(this));
 }
