@@ -24,7 +24,7 @@
   "dependencies": {
     "yeoman-generator": "~0.13.3",
     "generator-backbone": "0.1.2",
-    "chalk": "~0.2.0"
+    "chalk": "~1.0.0"
   },
   "devDependencies": {
     "mocha": "~1.12.0"
