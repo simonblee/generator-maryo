@@ -1,12 +1,13 @@
 define([
-    'marionette'
+    'marionette',
+    'views/<%= itemViewName %>'
 ],
 
-function (Marionette) {
+function (Marionette, <%= itemViewName %>) {
 
     return Marionette.CollectionView.extend({
 
-        itemView: <%= itemViewName %>,
+        childView: <%= itemViewName %>,
 
         events: {},
 

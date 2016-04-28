@@ -1,11 +1,10 @@
 define([
-    'backbone',
     'marionette'
 ],
 
-function (Backbone, Marionette) {
+function (Marionette) {
 
-    return Backbone.Marionette.ItemView.extend({
+    return Marionette.ItemView.extend({
 
         // MARYO GENERATED: Override if necessary
         template: '<%= itemTemplateName %>',

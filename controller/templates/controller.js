@@ -8,7 +8,9 @@ function (Marionette) {
 
         initialize: function () {},
 
-        onClose: function () {}
+        onBeforeDestroy: function () {},
+
+        onDestroy: function () {}
 
     });
 });
