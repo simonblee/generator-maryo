@@ -8,13 +8,16 @@ require([
 ],
 
 function ($, Backbone, App) {
-
+    // Fires after the Application has started and after the initializers have been executed
+    App.on("start", function(options){
+        if (Backbone.history){
+            // Trigger the initial route and enable HTML5 History API support
+            Backbone.history.start({ pushState: true, root: App.root });
+        }
+    });
     // Define your master router on the application namespace and trigger all
     // navigation from this instance.
     App.start();
-
-    // Trigger the initial route and enable HTML5 History API support
-    Backbone.history.start({ pushState: true, root: App.root });
 
     // All navigation that is relative should be passed through the navigate
     // method, to be processed by the router. If the link has a `data-bypass`

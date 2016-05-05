@@ -1,11 +1,10 @@
 define([
-    "underscore",
-    "backbone"
+    'marionette'
 ],
 
-function (_, Backbone) {
+function (Marionette) {
 
-    return Backbone.Marionette.Layout.extend({
+    return Marionette.LayoutView.extend({
 
         template: "appSkeleton",
 

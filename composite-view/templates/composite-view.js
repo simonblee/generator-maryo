@@ -1,18 +1,18 @@
 define([
-    'backbone',
-    'marionette'
+    'marionette',
+    'views/<%= itemViewName %>'
 ],
 
-function (Backbone, Marionette) {
+function (Marionette, <%= itemViewName %>) {
 
-    return Backbone.Marionette.CompositeView.extend({
+    return Marionette.CompositeView.extend({
 
         template: '<%= templateName %>',
 
         // OVERRIDE if not using a table with tbody as the item view container
-        itemViewContainer: "tbody",
+        childViewContainer: "tbody",
 
-        itemView: <%= itemViewName %>,
+        childView: <%= itemViewName %>,
 
         events: {},
 
