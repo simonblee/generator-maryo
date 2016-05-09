@@ -2,7 +2,7 @@
   "name": "<%= _.slugify(appname) %>",
   "version": "0.0.0",
   "dependencies": {},
-  "devDependencies": {
+  "devDependencies": {<% if (this.taskFormat === 'grunt') { %>
     "grunt": "~0.4.1",
     "grunt-contrib-copy": "~0.4.1",
     "grunt-contrib-concat": "~0.3.0",
@@ -21,7 +21,7 @@
     "grunt-mocha": "~0.3.0",<% } %>
     "grunt-requirejs": "~0.4.0",
     "grunt-bower-requirejs": "~0.4.3",<% if (templateFormat === 'dust') { %>
-    "grunt-dustjs": "~1.1.1", <% } if (templateFormat === 'handlebars') { %>
+    "grunt-dustjs": "~1.1.1",<% } if (templateFormat === 'handlebars') { %>
     "grunt-contrib-handlebars": "~0.5.8",
     "Backbone.Marionette.Handlebars": "0.2.0",<% } if (templateFormat === '_') { %>
     "grunt-contrib-jst": "0.5.0",<% } %>
@@ -30,8 +30,27 @@
     "grunt-open": "~0.2.0",
     "grunt-svgmin": "~0.1.0",
     "grunt-concurrent": "~0.1.0",
-    "matchdep": "~0.1.1"
-  },
+    "matchdep": "~0.1.1"<% } %><% if (taskFormat === 'npmscripts') { if (styleFormat === 'sass') { %>
+    "del-cli": "^0.2.0",
+    "node-sass": "^3.4.2",
+    "postcss-cli": "^2.5.1",
+    "autoprefixer": "^6.3.3",
+    "postcss-flexboxfixer": "0.0.4",
+    "cssnano": "^3.5.2"<% } else if (styleFormat === 'less') { %>
+    "less": "^2.6.1",
+    "less-watch-compiler": "^1.2.3",
+    "less-plugin-autoprefix": "^1.5.1"<% } } %>
+  },<% if (taskFormat === 'npmscripts') { %>
+  "scripts": { <% if (styleFormat === 'sass') { %>
+    "scss": "npm run scss:clean && node-sass app/styles -o app/styles --source-map true --output-style expanded --source-comments true",
+    "scss:watch": "npm run scss && node-sass app/styles -o app/styles --source-map true --output-style expanded --source-comments true --watch -r app/styles",
+    "scss:prod": "npm run scss:clean && node-sass app/styles -o app/styles --output-style compressed && npm run scss:final",
+    "scss:final": "postcss -u autoprefixer -u postcss-flexboxfixer -u cssnano --config ops.json -r app/styles/*.css",<% } else if (styleFormat === 'less') { %>
+    "scss": "npm run scss:clean && lessc app/styles/styles.less app/styles/styles.css",
+    "scss:watch": "npm run scss && less-watch-compiler app/styles app/styles styles.less",
+    "scss:prod": "npm run scss:clean && lessc -x --autoprefix='last 2 versions' app/styles -o app/styles --output-style",<% } %>
+    "scss:clean": "del-cli --force app/styles/styles.css"
+  },<% } %>
   "engines": {
     "node": ">=0.8.0"
   }
