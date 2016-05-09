@@ -32,6 +32,7 @@ MaryoGenerator.prototype.askFor = function askFor() {
         fs.readFile(path, function (err, data) {
             var config = JSON.parse(data);
 
+            this.taskFormat = config.taskFormat;
             this.styleFormat = config.styleFormat;
             this.templateFormat = config.templateFormat;
             this.testFramework = config.testFramework;
@@ -41,26 +42,43 @@ MaryoGenerator.prototype.askFor = function askFor() {
         }.bind(this));
     } else {
         var styleFormat = ['css', 'sass', 'less'],
+            modulesFormat = ['RequireJS', 'Webpack'],
+            taskFormat = ['npmscripts', 'grunt'],
             templateFormat = ['_', 'dust'],
             testFramework = ['none', 'jasmine', 'mocha'],
             prompts = [{
+                name: 'moduleFormat',
+                message: 'Choose a module bundler:',
+                type: 'list',
+                choices: modulesFormat,
+                store: true
+            }, {
+                name: 'taskFormat',
+                message: 'Which task runner would you like to use (' + taskFormat.join("/") + ')?',
+                type: 'list',
+                choices: taskFormat
+            }, {
                 name: 'styleFormat',
-                message: 'Which style format would you like to use ('+styleFormat.join("/")+')?',
+                message: 'Which style format would you like to use (' + styleFormat.join("/") + ')?',
+                type: 'list',
                 choices: styleFormat
             },
             {
                 name: 'templateFormat',
-                message: 'Which template library would you like to use ('+templateFormat.join("/")+')?',
+                message: 'Which template library would you like to use (' + templateFormat.join("/") + ')?',
+                default: '_',
                 choices: templateFormat
             },
             {
                 name: 'testFramework',
-                message: 'Which test framework would you like to use ('+testFramework.join("/")+')?',
+                message: 'Which test framework would you like to use (' + testFramework.join("/") + ')?',
+                type: 'list',
                 choices: testFramework
             },
             {
                 name: 'includeBootstrap',
                 message: 'Would you like to include Bootstrap (y)?',
+                default: 'y',
                 type: 'confirm'
             }];
 
@@ -81,6 +99,7 @@ MaryoGenerator.prototype.askFor = function askFor() {
         // Prompt the user and handle the user responses
         this.prompt(prompts, function (props, err) {
             this.styleFormat = props.styleFormat || styleFormat[0];
+            this.taskFormat = props.taskFormat || taskFormat[0];
             this.templateFormat = props.templateFormat || templateFormat[0];
             this.testFramework = props.testFramework || testFramework[0];
             this.includeBootstrap = props.includeBootstrap;
@@ -120,6 +139,7 @@ MaryoGenerator.prototype.app = function app () {
     this.copy('app.js', 'app/scripts/app.js');
     this.copy('main.js', 'app/scripts/main.js');
     this.copy('index.html', 'app/index.html');
+    this.write('app/styles/styles.' + this.styleFormat, '');
     this.copy('editorconfig', '.editorconfig');
     this.copy('jshintrc', '.jshintrc');
     this.copy('gitattributes', '.gitattributes');
