@@ -2,7 +2,7 @@
   "name": "<%= _.slugify(appname) %>",
   "version": "0.0.0",
   "dependencies": {
-    "requirejs": "^2.2.20",
+    "requirejs": "^2.1.20",
     "requirejs-text": "^2.0.12",<% if (includeBootstrap) { %>
     "bootstrap": "~3.3.6",<% } %>
     "marionette": "~2.4.5",
@@ -11,8 +11,8 @@
     "lodash": ">=3.0.0 <4.0.0",
     "jquery": "~2.2.3",<% if (templateFormat === 'dust') { %>
     "dustjs-linkedin": "2.7.2",
-    "dustjs-linkedin-helpers": "1.7.3",<% } %>
-    "marionette-dust": "0.3.3"
+    "dustjs-linkedin-helpers": "1.7.3",
+    "marionette-dust": "0.3.3" <% } %>
   },
   "devDependencies": {
 
