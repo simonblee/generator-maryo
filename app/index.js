@@ -46,13 +46,13 @@ MaryoGenerator.prototype.askFor = function askFor() {
             taskFormat = ['npmscripts', 'grunt'],
             templateFormat = ['_', 'dust'],
             testFramework = ['none', 'jasmine', 'mocha'],
-            prompts = [{
+            prompts = [/*{ // TODO: ADD WebPack support
                 name: 'moduleFormat',
                 message: 'Choose a module bundler:',
                 type: 'list',
                 choices: modulesFormat,
                 store: true
-            }, {
+            },*/ {
                 name: 'taskFormat',
                 message: 'Which task runner would you like to use (' + taskFormat.join("/") + ')?',
                 type: 'list',

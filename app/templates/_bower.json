@@ -2,7 +2,7 @@
   "name": "<%= _.slugify(appname) %>",
   "version": "0.0.0",
   "dependencies": {
-    "requirejs": "^2.1.20",
+    "requirejs": "^2.2.0",
     "requirejs-text": "^2.0.12",<% if (includeBootstrap) { %>
     "bootstrap": "~3.3.6",<% } %>
     "marionette": "~2.4.5",
