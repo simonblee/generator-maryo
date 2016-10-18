@@ -34,7 +34,7 @@ The generator will give you the following libraries:
 * [Dust](http://linkedin.github.io/dustjs/) (optional) (LinkedIn's fork)
 * [Underscore](http://underscorejs.org/) ([lodash](http://lodash.com/))
 * [Grunt](http://gruntjs.com/)
-* [Jasmine](http://pivotal.github.io/jasmine/) or [Mocha](http://visionmedia.github.io/mocha/)
+* [Jasmine](https://jasmine.github.io/) or [Mocha](http://mochajs.org/)
 * [LESS](http://www.lesscss.org/) or [SASS](http://sass-lang.com/) (both optional)
 
 Libraries are delivered using [Bower](http://bower.io/). If you need different versions, simply change
